@@ -24,7 +24,7 @@ export function ItemContent(props:{info:string}) {
           fontWeight='bold'
           color={textColor}
           fontSize={{ base: "md", md: "md" }}>
-          New Update: {props.info}
+          Actualización: {props.info}
         </Text>
         <Flex alignItems='center'>
           <Text

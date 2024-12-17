@@ -16,9 +16,6 @@ export default function Dashboard(props: { [x: string]: any }) {
   const [fixed] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
   // functions for changing the states from components
-  const getRoute = () => {
-    return window.location.pathname !== '/admin/full-screen-maps';
-  };
   const getActiveRoute = (routes: RoutesType[]): string => {
     let activeRoute = 'Default Brand Text';
     for (let i = 0; i < routes.length; i++) {
@@ -92,7 +89,7 @@ export default function Dashboard(props: { [x: string]: any }) {
             <Box>
               <Navbar
                 onOpen={onOpen}
-                logoText={'Horizon UI Dashboard PRO'}
+                logoText={'Followsite'}
                 brandText={getActiveRoute(routes)}
                 secondary={getActiveNavbar(routes)}
                 message={getActiveNavbarText(routes)}
@@ -101,24 +98,21 @@ export default function Dashboard(props: { [x: string]: any }) {
               />
             </Box>
           </Portal>
-
-          {getRoute() ? (
-            <Box
-              mx="auto"
-              p={{ base: '20px', md: '30px' }}
-              pe="20px"
-              minH="100vh"
-              pt="50px"
-            >
-              <Routes>
-                {getRoutes(routes)}
-                <Route
-                  path="/"
-                  element={<Navigate to="/dasboard/reports" replace />}
-                />
-              </Routes>
-            </Box>
-          ) : null}
+          <Box
+            mx="auto"
+            p={{ base: '20px', md: '30px' }}
+            pe="20px"
+            minH="100vh"
+            pt="50px"
+          >
+            <Routes>
+              {getRoutes(routes)}
+              <Route
+                path="/"
+                element={<Navigate to="/admin/main" replace />}
+              />
+            </Routes>
+          </Box>
           <Box>
             <Footer />
           </Box>

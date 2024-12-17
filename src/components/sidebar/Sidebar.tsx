@@ -28,6 +28,7 @@ function Sidebar(props: { routes: RoutesType[]; [x: string]: any }) {
 	// Chakra Color Mode
 	let sidebarBg = useColorModeValue('white', 'navy.800');
 	let sidebarMargins = '0px';
+	let adminRoutes = routes.filter((route) => route.layout === '/admin');
 
 	// SIDEBAR
 	return (
@@ -46,7 +47,7 @@ function Sidebar(props: { routes: RoutesType[]; [x: string]: any }) {
 					renderTrackVertical={renderTrack}
 					renderThumbVertical={renderThumb}
 					renderView={renderView}>
-					<Content routes={routes} />
+					<Content routes={adminRoutes} />
 				</Scrollbars>
 			</Box>
 		</Box>

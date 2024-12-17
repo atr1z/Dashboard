@@ -19,7 +19,7 @@ import { ItemContent } from 'components/menu/ItemContent';
 import { SearchBar } from 'components/navbar/searchBar/SearchBar';
 import { SidebarResponsive } from 'components/sidebar/Sidebar';
 import PropTypes from 'prop-types';
-import React from 'react';
+
 // Assets
 import navImage from 'assets/img/layout/Navbar.png';
 import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
@@ -99,10 +99,10 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 					maxW={{ base: '360px', md: 'unset' }}>
 					<Flex w='100%' mb='20px'>
 						<Text fontSize='md' fontWeight='600' color={textColor}>
-							Notifications
+							Notificaciones
 						</Text>
 						<Text fontSize='sm' fontWeight='500' color={textColorBrand} ms='auto' cursor='pointer'>
-							Mark all read
+							Marcar todas como leídas
 						</Text>
 					</Flex>
 					<Flex flexDirection='column'>
