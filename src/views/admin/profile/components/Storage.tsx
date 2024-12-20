@@ -3,8 +3,7 @@ import { Box, Flex, Icon, Progress, Text, useColorModeValue } from '@chakra-ui/r
 // Custom components
 import Card from 'components/card/Card';
 import IconBox from 'components/icons/IconBox';
-import Menu from 'components/menu/MainMenu';
-import React from 'react';
+// import Menu from 'components/menu/MainMenu';
 // Assets
 import { MdOutlineCloudDone } from 'react-icons/md';
 
@@ -17,9 +16,9 @@ export default function Banner(props: { used: number; total: number; [x: string]
 	const box = useColorModeValue('secondaryGray.300', 'whiteAlpha.100');
 	return (
 		<Card mb={{ base: '0px', lg: '20px' }} alignItems='center'>
-			<Flex w='100%'>
+			{/*<Flex w='100%'>
 				<Menu ms='auto' />
-			</Flex>
+			</Flex>*/}
 			<IconBox
 				mx='auto'
 				h='100px'
@@ -28,10 +27,10 @@ export default function Banner(props: { used: number; total: number; [x: string]
 				bg={box}
 			/>
 			<Text color={textColorPrimary} fontWeight='bold' fontSize='2xl' mt='10px'>
-				Your storage
+				Almacenamiento
 			</Text>
-			<Text color={textColorSecondary} fontSize='md' maxW={{ base: '100%', xl: '80%', '3xl': '60%' }} mx='auto'>
-				Supervise your drive space in the easiest way
+			<Text color={textColorSecondary} align='center' fontSize='md' maxW={{ base: '100%', xl: '80%', '3xl': '60%' }} mx='auto'>
+				Tu nube contempla imagenes, registros y archivos
 			</Text>
 			<Box w='100%' mt='auto'>
 				<Flex w='100%' justify='space-between' mb='10px'>

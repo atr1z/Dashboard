@@ -4,7 +4,7 @@ import { AdvancedMarker, APIProvider, Map, MapCameraChangedEvent } from "@vis.gl
 export default function Tracking() {
     const position = { lat: 53.54992, lng: 10.00678 };
     return (
-        <APIProvider apiKey={'AIzaSyATKXAQn2qRZbm8uBcfLJLZwFEIsWK5aq4'} onLoad={() => console.log('Maps API has loaded.')}>
+        <APIProvider apiKey={''} onLoad={() => console.log('Maps API has loaded.')}>
             <Flex
                 direction='column'
                 w='100%'

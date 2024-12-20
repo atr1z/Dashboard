@@ -1,26 +1,3 @@
-/*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
-=========================================================
-* Horizon UI - v1.1.0
-=========================================================
-
-* Product Page: https://www.horizon-ui.com/
-* Copyright 2022 Horizon UI (https://www.horizon-ui.com/)
-
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-// Chakra imports
 import { Box, Grid } from '@chakra-ui/react';
 
 // Custom components
@@ -29,13 +6,15 @@ import General from 'views/admin/profile/components/General';
 import Notifications from 'views/admin/profile/components/Notifications';
 import Projects from 'views/admin/profile/components/Projects';
 import Storage from 'views/admin/profile/components/Storage';
-import Upload from 'views/admin/profile/components/Upload';
+//import Upload from 'views/admin/profile/components/Upload';
 
 // Assets
 import banner from 'assets/img/auth/banner.png';
 import avatar from 'assets/img/avatars/avatar4.png';
+import { useAppContext } from 'contexts/AppContext';
 
-export default function Overview() {
+export default function Profile() {
+	const { user } = useAppContext();
 	return (
 		<Box pt={{ base: '130px', md: '80px', xl: '80px' }}>
 			{/* Main Fields */}
@@ -52,15 +31,15 @@ export default function Overview() {
 				<Banner
 					gridArea='1 / 1 / 2 / 2'
 					banner={banner}
-					avatar={avatar}
-					name='Adela Parkson'
-					job='Product Designer'
-					posts='17'
-					followers='9.7k'
-					following='274'
+					picture={avatar}
+					name={user ? user?.name + " " + user?.lastName : ""}
+					email={user ? user?.email : ""}
+					users='0'
+					assets='0'
+					reports='0'
 				/>
-				<Storage gridArea={{ base: '2 / 1 / 3 / 2', lg: '1 / 2 / 2 / 3' }} used={25.6} total={50} />
-				<Upload
+				<Storage gridArea={{ base: '2 / 1 / 3 / 2', lg: '1 / 2 / 2 / 3' }} used={0.1} total={10} />
+				{/*<Upload
 					gridArea={{
 						base: '3 / 1 / 4 / 2',
 						lg: '1 / 3 / 2 / 4'
@@ -68,7 +47,7 @@ export default function Overview() {
 					minH={{ base: 'auto', lg: '420px', '2xl': '365px' }}
 					pe='20px'
 					pb={{ base: '100px', lg: '20px' }}
-				/>
+				/>*/}
 			</Grid>
 			<Grid
 				mb='20px'

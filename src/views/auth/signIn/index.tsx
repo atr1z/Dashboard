@@ -164,6 +164,11 @@ function SignIn() {
                 size='lg'
                 type={show ? "text" : "password"}
                 variant='auth'
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleLogin();
+                  }
+                }}
                 onChange={handleInput}
               />
               <InputRightElement display='flex' alignItems='center' mt='4px'>
