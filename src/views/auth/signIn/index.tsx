@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { getStatus, Status } from "types/Status";
+import { Status } from "types/Status";
 import topLeftError from "hooks/Toasts";
 import useLogin from "services/auth/Login";
 import {
@@ -25,8 +25,7 @@ import illustration from "assets/img/auth/followsite2.png";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { ToastContainer } from "react-toastify";
-
-
+import { getPathById } from "routes";
 
 function SignIn() {
   // Request
@@ -55,12 +54,16 @@ function SignIn() {
   };
 
   const handleLogin = () => {
+    if (!input.email || !input.password) {
+      topLeftError("Debes completar todos los campos");
+      return;
+    }
     setLoading(true);
     login(input.email, input.password).then((response) => {
       setLoading(false);
       switch (response) {
         case Status.Success:
-          navigate("/admin/");
+          navigate(getPathById("dashboard"));
           break;
         case Status.UserNotFound:
           topLeftError("Usuario no encontrado");
@@ -139,6 +142,7 @@ function SignIn() {
               mb='24px'
               fontWeight='500'
               size='lg'
+              errorBorderColor='red.300'
               onChange={handleInput}
             />
             <FormLabel

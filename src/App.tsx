@@ -5,22 +5,25 @@ import AdminLayout from './layouts/admin';
 import { ChakraProvider } from '@chakra-ui/react';
 import initialTheme from './theme/theme';
 import { useState } from 'react';
+import { useAppContext } from 'contexts/AppContext';
+import { getPathById } from 'routes';
 
 
 export default function Main() {
   const [currentTheme, setCurrentTheme] = useState(initialTheme);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const { user } = useAppContext();
   return (
+
     <ChakraProvider theme={currentTheme}>
       <Routes>
         <Route path="auth/*" element={<AuthLayout />} />
         <Route
           path="admin/*"
           element={
-            isAuthenticated ? <AdminLayout theme={currentTheme} setTheme={setCurrentTheme} /> : <Navigate to="/auth/sign-in" replace />
+            user ? <AdminLayout theme={currentTheme} setTheme={setCurrentTheme} /> : <Navigate to={getPathById('sign-in')} replace />
           }
         />
-        <Route path="/" element=<Navigate to={isAuthenticated ? "/dashboard" : "/auth/sign-in"} replace /> />
+        <Route path="/" element=<Navigate to={user ? getPathById('dashboard') : getPathById('sign-in')} replace /> />
       </Routes>
     </ChakraProvider>
   );

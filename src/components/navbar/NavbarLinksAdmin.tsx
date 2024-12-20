@@ -4,8 +4,6 @@ import {
 	Button,
 	Flex,
 	Icon,
-	Image,
-	Link,
 	Menu,
 	MenuButton,
 	MenuItem,
@@ -21,12 +19,15 @@ import { SidebarResponsive } from 'components/sidebar/Sidebar';
 import PropTypes from 'prop-types';
 
 // Assets
-import navImage from 'assets/img/layout/Navbar.png';
-import { MdNotificationsNone, MdInfoOutline } from 'react-icons/md';
+import { MdNotificationsNone } from 'react-icons/md';
 import { IoMdMoon, IoMdSunny } from 'react-icons/io';
 import { FaEthereum } from 'react-icons/fa';
-import routes from 'routes';
+import routes, { getPathById } from 'routes';
+import { useAppContext } from 'contexts/AppContext';
+import { useNavigate } from 'react-router-dom';
+
 export default function HeaderLinks(props: { secondary: boolean }) {
+	const navigate = useNavigate();
 	const { secondary } = props;
 	const { colorMode, toggleColorMode } = useColorMode();
 	// Chakra Color Mode
@@ -42,7 +43,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 		'14px 17px 40px 4px rgba(112, 144, 176, 0.18)',
 		'14px 17px 40px 4px rgba(112, 144, 176, 0.06)'
 	);
-	const borderButton = useColorModeValue('secondaryGray.500', 'whiteAlpha.200');
+	const { user } = useAppContext();
 	return (
 		<Flex
 			w={{ sm: '100%', md: 'auto' }}
@@ -115,48 +116,6 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 					</Flex>
 				</MenuList>
 			</Menu>
-
-			<Menu>
-				<MenuButton p='0px'>
-					<Icon mt='6px' as={MdInfoOutline} color={navbarIcon} w='18px' h='18px' me='10px' />
-				</MenuButton>
-				<MenuList
-					boxShadow={shadow}
-					p='20px'
-					me={{ base: '30px', md: 'unset' }}
-					borderRadius='20px'
-					bg={menuBg}
-					border='none'
-					mt='22px'
-					minW={{ base: 'unset' }}
-					maxW={{ base: '360px', md: 'unset' }}>
-					<Image src={navImage} borderRadius='16px' mb='28px' />
-					<Flex flexDirection='column'>
-						<Link w='100%' href='https://horizon-ui.com/pro'>
-							<Button w='100%' h='44px' mb='10px' variant='brand'>
-								Buy Horizon UI PRO
-							</Button>
-						</Link>
-						<Link w='100%' href='https://horizon-ui.com/documentation/docs/introduction'>
-							<Button
-								w='100%'
-								h='44px'
-								mb='10px'
-								border='1px solid'
-								bg='transparent'
-								borderColor={borderButton}>
-								See Documentation
-							</Button>
-						</Link>
-						<Link w='100%' href='https://github.com/horizon-ui/horizon-ui-chakra-ts'>
-							<Button w='100%' h='44px' variant='no-hover' color={textColor} bg='transparent'>
-								Try Horizon Free
-							</Button>
-						</Link>
-					</Flex>
-				</MenuList>
-			</Menu>
-
 			<Button
 				variant='no-hover'
 				bg='transparent'
@@ -179,7 +138,7 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 					<Avatar
 						_hover={{ cursor: 'pointer' }}
 						color='white'
-						name='Adela Parkson'
+						name='{user? user.name + " " + user.lastName : ""}'
 						bg='#11047A'
 						size='sm'
 						w='40px'
@@ -198,23 +157,26 @@ export default function HeaderLinks(props: { secondary: boolean }) {
 							fontSize='sm'
 							fontWeight='700'
 							color={textColor}>
-							👋&nbsp; Hey, Adela
+							👋&nbsp; Hola, {user ? user.name : ''}
 						</Text>
 					</Flex>
 					<Flex flexDirection='column' p='10px'>
-						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} borderRadius='8px' px='14px'>
-							<Text fontSize='sm'>Profile Settings</Text>
-						</MenuItem>
-						<MenuItem _hover={{ bg: 'none' }} _focus={{ bg: 'none' }} borderRadius='8px' px='14px'>
-							<Text fontSize='sm'>Newsletter Settings</Text>
+						<MenuItem
+							_hover={{ bg: 'none' }}
+							_focus={{ bg: 'none' }}
+							borderRadius='8px'
+							px='14px'
+							onClick={() => navigate(getPathById('profile'))}>
+							<Text fontSize='sm'>Mi perfil</Text>
 						</MenuItem>
 						<MenuItem
 							_hover={{ bg: 'none' }}
 							_focus={{ bg: 'none' }}
 							color='red.400'
 							borderRadius='8px'
+							onClick={() => navigate(getPathById('logout'))}
 							px='14px'>
-							<Text fontSize='sm'>Log out</Text>
+							<Text fontSize='sm'>Cerrar sesión</Text>
 						</MenuItem>
 					</Flex>
 				</MenuList>
