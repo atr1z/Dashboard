@@ -14,20 +14,18 @@ export default function GeneralInformation(props: { [x: string]: any }) {
 	return (
 		<Card mb={{ base: '0px', '2xl': '20px' }} {...rest}>
 			<Text color={textColorPrimary} fontWeight='bold' fontSize='2xl' mt='10px' mb='4px'>
-				General Information
+				Información General
 			</Text>
 			<Text color={textColorSecondary} fontSize='md' me='26px' mb='40px'>
-				As we live, our hearts turn colder. Cause pain is what we go through as we become older. We get insulted
-				by others, lose trust for those others. We get back stabbed by friends. It becomes harder for us to give
-				others a hand. We get our heart broken by people we love, even that we give them all...
+				{/* Aquí va la descripción del cliente*/}
 			</Text>
 			<SimpleGrid columns={2} gap='20px'>
-				<Information boxShadow={cardShadow} title='Education' value='Stanford University' />
-				<Information boxShadow={cardShadow} title='Languages' value='English, Spanish, Italian' />
-				<Information boxShadow={cardShadow} title='Department' value='Product Design' />
-				<Information boxShadow={cardShadow} title='Work History' value='Google, Facebook' />
-				<Information boxShadow={cardShadow} title='Organization' value='Simmmple Web LLC' />
-				<Information boxShadow={cardShadow} title='Birthday' value='20 July 1986' />
+				<Information boxShadow={cardShadow} title='Razón Social' value='XXXXX' />
+				<Information boxShadow={cardShadow} title='Dirección' value='XXXXXXX' />
+				<Information boxShadow={cardShadow} title='Dato 1' value='xxxxx' />
+				<Information boxShadow={cardShadow} title='Dato 2' value='XXXX' />
+				<Information boxShadow={cardShadow} title='Dato 3' value='XXXXXXX' />
+				<Information boxShadow={cardShadow} title='Dato 4' value='XXXXXXX' />
 			</SimpleGrid>
 		</Card>
 	);

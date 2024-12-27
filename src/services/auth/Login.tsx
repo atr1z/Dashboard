@@ -9,8 +9,7 @@ const useLogin = () => {
     const browser = getBrowserInfo();
     const { setUser } = useAppContext();
 
-    const login = async (username, password) => {
-
+    const login = async (username: string, password: string, remember: boolean) => {
         try {
             const response = await Call(true).post(
                 'auth/login',
@@ -26,25 +25,29 @@ const useLogin = () => {
                     "bundleVersion": "1.0.0",
                     "token": "N/A",
                 });
-                const user = {
-                    name: response.data.name,
-                    lastName: response.data.lastName,
-                    email: username,
-                    modules: response.data.modules.map(module => ({
-                        id: module.id,
-                        code: module.code,
-                        name: module.name,
-                        description: module.description,
-                        icon: module.icon,
-                        parent: module.parent,
-                        path: module.path,
-                        version: module.version,
-                        status: module.status === "Active",
-                    }))
-                };
+            const user = {
+                name: response.data.name,
+                lastName: response.data.lastName,
+                email: username,
+                modules: response.data.modules.map((module: any) => ({
+                    id: module.id,
+                    code: module.code,
+                    name: module.name,
+                    description: module.description,
+                    icon: module.icon,
+                    parent: module.parent,
+                    path: module.path,
+                    version: module.version,
+                    status: module.status === "Active",
+                })),
+                token: response.data.token,
+            };
+            if (remember) {
+                localStorage.setItem('user', JSON.stringify(user));
+            }
             setUser(user);
             return Status.Success;
-        } catch (err) {
+        } catch (err: any) {
             setUser(null);
             return getStatus(err.response?.status);
         }

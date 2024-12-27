@@ -59,7 +59,7 @@ function SignIn() {
       return;
     }
     setLoading(true);
-    login(input.email, input.password).then((response) => {
+    login(input.email, input.password, input.remember).then((response) => {
       setLoading(false);
       switch (response) {
         case Status.Success:

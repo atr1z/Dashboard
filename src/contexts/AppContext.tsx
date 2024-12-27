@@ -9,7 +9,9 @@ interface AppContextProps {
 const AppContext = createContext<AppContextProps | undefined>(undefined);
 
 export const AppProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<User>(null);
+    const storedUser = localStorage.getItem('user');
+    const initialUser = storedUser ? JSON.parse(storedUser) : null;
+    const [user, setUser] = useState<User>(initialUser);
 
     return (
         <AppContext.Provider value={{ user, setUser }}>
