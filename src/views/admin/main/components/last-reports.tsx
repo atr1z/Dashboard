@@ -1,5 +1,6 @@
 import { Avatar, Box, Button, Flex, Table, Tbody, Td, Text, Th, Thead, Tr, useColorModeValue } from "@chakra-ui/react";
 import { createColumnHelper, flexRender, getCoreRowModel, SortingState, useReactTable } from "@tanstack/react-table";
+import formatDate from "hooks/Dates";
 import { useEffect, useState } from "react";
 import useLastUserReports from "services/reports/LastGuardReports";
 import { LastReport } from "services/reports/LastReport";
@@ -112,23 +113,23 @@ export default function LastReports() {
 
     useEffect(() => {
         lastUserReports().then((response: [LastReport]) => {
-                setData(response.map(user => {
-                    return {
-                        guard: {
-                            id: user.id,
-                            name: user.name,
-                            lastName: user.lastName,
-                            picture: ""
-                        },
-                        reports: 1,
-                        lastReport: {
-                            id: user.lastIssue.id,
-                            date: user.lastIssue.received,
-                            location: ""
-                        }
+            setData(response.map(user => {
+                return {
+                    guard: {
+                        id: user.id,
+                        name: user.name,
+                        lastName: user.lastName,
+                        picture: ""
+                    },
+                    reports: 1,
+                    lastReport: {
+                        id: user.lastIssue.id,
+                        date: user.lastIssue.received,
+                        location: ""
                     }
-                }));
-            });
+                }
+            }));
+        });
     }, [table]);
 
     return (

@@ -1,5 +1,4 @@
 import { Box, Card, Flex, Grid } from "@chakra-ui/react";
-import Map from "./components/map";
 import LastReports from "./components/last-reports";
 
 export default function MainDashboard() {
@@ -20,7 +19,7 @@ export default function MainDashboard() {
                 </Flex>
                 <Flex flexDirection='column' gridArea={{ xl: '1 / 3 / 2 / 4', '2xl': '1 / 2 / 2 / 3' }}>
                     <Card p='0px' mb='20px'>
-                        <Map />
+
                     </Card>
                 </Flex>
             </Grid>
